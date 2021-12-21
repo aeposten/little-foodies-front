@@ -1,8 +1,9 @@
 import Login from './Login';
 import Register from './Register';
+import Nav from './Nav';
 import React, { useEffect, useState } from 'react';
 
-function App() {
+const App = () => {
 	const [user, setUser] = useState(null);
 
 	useEffect(() => {
@@ -12,20 +13,21 @@ function App() {
 			}
 		});
 	}, []);
-	
-	function handleLogin(user) {
-		setUser(user);
-	}
 
-	function handleLogout() {
+	const handleLogin = (user) => {
+		setUser(user);
+	};
+
+	const logout = () => {
 		setUser(null);
-	}
+	};
 	return (
 		<div className="App">
+			<Nav user={user} logout={logout} />
 			<Register user={user} setUser={setUser} />
 			<Login handleLogin={handleLogin} user={user} setUser={setUser} />
 		</div>
 	);
-}
+};
 
 export default App;

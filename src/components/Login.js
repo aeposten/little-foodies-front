@@ -1,19 +1,10 @@
 import React, { useEffect, useState } from 'react';
 
 const Login = ({ handleLogin, user }) => {
-	// const [user, setUser] = useState(null);
 	const [formData, setFormData] = useState({
 		username: '',
 		password: '',
 	});
-
-	// useEffect(() => {
-	// 	fetch('/me').then((response) => {
-	// 		if (response.ok) {
-	// 			response.json().then((user) => handleLogin(user));
-	// 		}
-	// 	});
-	// }, []);
 
 	const userInfo = {
 		username: formData.username,
@@ -31,7 +22,7 @@ const Login = ({ handleLogin, user }) => {
 		});
 	};
 
-	function handleSubmit(e) {
+	const handleSubmit = (e) => {
 		e.preventDefault();
 		fetch('/login', {
 			method: 'POST',
@@ -42,11 +33,11 @@ const Login = ({ handleLogin, user }) => {
 		}).then((response) => {
 			if (response.ok) {
 				response.json().then((user) => handleLogin(user));
-                console.log(userInfo)
-                resetForm();
+				// console.log(userInfo);
+				resetForm();
 			}
 		});
-	}
+	};
 
 	return (
 		<>
@@ -57,7 +48,7 @@ const Login = ({ handleLogin, user }) => {
 						type="text"
 						name="username"
 						placeholder="Username"
-                        value={formData.username}
+						value={formData.username}
 						onChange={handleChange}
 					/>
 				</p>
@@ -66,7 +57,7 @@ const Login = ({ handleLogin, user }) => {
 						type="password"
 						name="password"
 						placeholder="Password"
-                        value={formData.password}
+						value={formData.password}
 						onChange={handleChange}
 					/>
 				</p>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const Register = ({handleLogin, user}) => {
+const Register = ({ handleLogin, user }) => {
 	// const [user, setUser] = useState(null);
 	const [formData, setFormData] = useState({
 		first_name: '',
@@ -38,7 +38,7 @@ const Register = ({handleLogin, user}) => {
 		});
 	};
 
-	function handleSubmit(e) {
+	const handleSubmit = (e) => {
 		e.preventDefault();
 		fetch('/register', {
 			method: 'POST',
@@ -49,11 +49,11 @@ const Register = ({handleLogin, user}) => {
 		}).then((response) => {
 			if (response.ok) {
 				response.json().then((user) => handleLogin(user));
-				console.log(newUser);
+				// console.log(newUser);
 				resetForm();
 			}
 		});
-	}
+	};
 
 	return (
 		<>
