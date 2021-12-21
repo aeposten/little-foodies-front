@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
-const Register = () => {
-	const [user, setUser] = useState(null);
+const Register = ({handleLogin, user}) => {
+	// const [user, setUser] = useState(null);
 	const [formData, setFormData] = useState({
 		first_name: '',
 		Last_name: '',
@@ -13,11 +13,22 @@ const Register = () => {
 
 	const newUser = {
 		first_name: formData.first_name,
-		Last_name: formData.Last_name,
+		last_name: formData.last_name,
 		email: formData.email,
 		username: formData.username,
 		password: formData.password,
 		password_confirmation: formData.password_confirmation,
+	};
+
+	const resetForm = () => {
+		setFormData({
+			first_name: '',
+			last_name: '',
+			email: '',
+			username: '',
+			password: '',
+			password_confirmation: '',
+		});
 	};
 
 	const handleChange = (e) => {
@@ -37,26 +48,30 @@ const Register = () => {
 			body: JSON.stringify(newUser),
 		}).then((response) => {
 			if (response.ok) {
-				response.json().then((user) => setUser(user));
+				response.json().then((user) => handleLogin(user));
 				console.log(newUser);
+				resetForm();
 			}
 		});
 	}
 
 	return (
 		<>
+			<h1>Register</h1>
 			<form className="registration" onSubmit={(e) => handleSubmit(e)}>
 				<p>
 					<input
 						type="text"
 						name="first_name"
 						placeholder="First Name"
+						value={formData.first_name}
 						onChange={handleChange}
 					/>
 					<input
 						type="text"
 						name="last_name"
 						placeholder="Last Name"
+						value={formData.last_name}
 						onChange={handleChange}
 					/>
 				</p>
@@ -65,6 +80,7 @@ const Register = () => {
 						type="email"
 						name="email"
 						placeholder="Email Address"
+						value={formData.email}
 						onChange={handleChange}
 					/>
 				</p>
@@ -73,6 +89,7 @@ const Register = () => {
 						type="text"
 						name="username"
 						placeholder="Username"
+						value={formData.username}
 						onChange={handleChange}
 					/>
 				</p>
@@ -81,6 +98,7 @@ const Register = () => {
 						type="password"
 						name="password"
 						placeholder="Password"
+						value={formData.password}
 						onChange={handleChange}
 					/>
 				</p>
@@ -89,6 +107,7 @@ const Register = () => {
 						type="password"
 						name="password_confirmation"
 						placeholder="Confirm Password"
+						value={formData.password_confirmation}
 						onChange={handleChange}
 					/>
 				</p>
@@ -100,7 +119,6 @@ const Register = () => {
 					>
 						Submit
 					</button>
-					<button>Reset Form</button>
 				</p>
 			</form>
 		</>
