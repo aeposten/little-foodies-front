@@ -12,12 +12,12 @@ const Nav = ({ user, logout }) => {
 				{user ? (
 					<div>
 						<p>
-							Welcome, {user.first_name} {console.log(user.first_name)}!
+							Hello {user.first_name}!
 						</p>
 						<button onClick={handleLogout}>Logout</button>
 					</div>
 				) : (
-					<Link to="/login">Click Here to Login</Link>
+					<Link to="/login">Login</Link>
 				)}
 			</BrowserRouter>
 		</>

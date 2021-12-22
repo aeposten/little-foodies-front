@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
 const Register = ({ handleLogin, user }) => {
-	// const [user, setUser] = useState(null);
 	const [formData, setFormData] = useState({
 		first_name: '',
 		Last_name: '',
@@ -49,7 +48,6 @@ const Register = ({ handleLogin, user }) => {
 		}).then((response) => {
 			if (response.ok) {
 				response.json().then((user) => handleLogin(user));
-				// console.log(newUser);
 				resetForm();
 			}
 		});

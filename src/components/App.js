@@ -1,8 +1,8 @@
 import Login from './Login';
 import Register from './Register';
 import Nav from './Nav';
+import Profile from './Profile';
 import React, { useEffect, useState } from 'react';
-
 const App = () => {
 	const [user, setUser] = useState(null);
 
@@ -26,6 +26,8 @@ const App = () => {
 			<Nav user={user} logout={logout} />
 			<Register user={user} setUser={setUser} />
 			<Login handleLogin={handleLogin} user={user} setUser={setUser} />
+			<Profile user={user}/>
+
 		</div>
 	);
 };
