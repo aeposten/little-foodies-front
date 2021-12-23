@@ -4,15 +4,17 @@ const AddChild = () => {
 	const [formData, setFormData] = useState({
 		first_name: '',
 		age: '',
+        image: '',
 	});
 
 	const newChild = {
 		first_name: formData.first_name,
 		age: formData.age,
+        image: formData.image,
 	};
 
 	const resetForm = () => {
-		setFormData({ first_name: '', age: '' });
+		setFormData({ first_name: '', age: '', image: '' });
 	};
 
 	const handleChange = (e) => {
@@ -21,6 +23,10 @@ const AddChild = () => {
 			[e.target.name]: e.target.value,
 		});
 	};
+
+    const handleImageChange = (e) => { 
+        setFormData({image: e.target.files[0] });
+      };
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -56,6 +62,16 @@ const AddChild = () => {
 						placeholder="Age"
 						value={formData.age}
 						onChange={handleChange}
+					/>
+				</p>
+                <p>
+					<input
+						type="file"
+                        accept="image/*"
+						name="image"
+						placeholder="Upload Image"
+						// value={formData.image}
+						onChange={handleImageChange}
 					/>
 				</p>
 				<p>
